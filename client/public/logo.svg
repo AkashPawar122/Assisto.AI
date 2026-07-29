@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+        
+            <defs>
+                <clipPath id="clip-shape">
+                    <rect width="100%" height="100%" rx="50%" ry="50%" />
+                </clipPath>
+            </defs>
+        
+		<defs>
+			
+						<filter id="shadow-0" x="-200%" y="-200%" width="500%" height="500%">
+							<feDropShadow
+								dx="0"
+								dy="0.923076923076923"
+								stdDeviation="0.923076923076923"
+								flood-color="#000000"
+								flood-opacity="0.3"
+							/>
+						</filter>
+					
+		</defs>
+        <g clip-path="url(#clip-shape)">
+            
+            <defs>
+                <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#ee0979" /><stop offset="100%" stop-color="#ff6a00" />
+                </linearGradient>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#bg-grad)" />
+        
+			
+            <g transform="translate(256, 256) scale(10.833333333333334) rotate(0) translate(-24, -24)" opacity="1" filter="url(#shadow-0)">
+					<title xmlns="" fill="#ffffff">arcticons:geometry-dash-meltdown</title>
+<g xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="m37.171 21.02l2.175-2.174L44.5 24L24 44.5l-5.154-5.155l2.34-2.34m2.804-2.804l3.636-3.636m3.017-3.017l3.484-3.484M18.49 34.196l-2.397 2.397L3.5 24L24 3.5l12.593 12.593l-2.216 2.216m-2.773 2.773l-3.791 3.791m-2.94 2.94l-3.675 3.675" fill="#ffffff"/><path d="m21.91 24.77l2.9-2.9l8.752 8.756l-2.9 2.898zm-5.563 7.087l2.579-2.563l7.2 7.24l-2.578 2.564zm12.998-13.075l2.578-2.564l7.201 7.241l-2.578 2.564z" fill="#ffffff"/><circle cx="13.384" cy="24.215" r="3.713" fill="#ffffff"/><circle cx="24.293" cy="13.384" r="3.713" fill="#ffffff"/></g>
+				</g>
+        </g>
+    </svg>
