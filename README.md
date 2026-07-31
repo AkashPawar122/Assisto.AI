@@ -1,6 +1,6 @@
 # 🎙️ Assisto.AI — AI-Powered Voice Assistant & Autonomous Agent
 
-**Assisto.AI** is an intelligent, voice-driven AI customer support and navigation agent. Built to seamlessly integrate into any modern web application, Assisto.AI listens to user speech, processes business data using the Google Gemini API, speaks real-time answers, and can even automatically drive page navigation on the host website.
+**Assisto.AI** is an intelligent, voice-driven AI customer support and navigation agent. Built to seamlessly integrate into any modern web application, Assisto.AI listens to user speech, processes business data using the Google Gemini API, speaks real-time answers, and can even automatically drive page navigation on the host website 🤯.
 
 Whether deployed as an interactive widget or a standalone voice agent, Assisto.AI transforms standard web browsing into a hands-free conversational experience.
 
@@ -29,3 +29,12 @@ Whether deployed as an interactive widget or a standalone voice agent, Assisto.A
 * 🟢 **Node.js & Express.js** — High-performance RESTful API services
 * 🍃 **MongoDB** — NoSQL database for managing knowledge base, chat histories, and agent settings
 * ♊ **Google Gemini API** — Core AI engine powering intent extraction and contextual generation
+
+### **Services & Deployment**
+* ☁️ **Render** — Cloud platform hosting for both frontend and backend services
+
+---
+
+## **Live Link**
+
+💻 **Assisto.AI** - [(https://assisto-ai-frontend.onrender.com/)](https://assisto-ai-frontend.onrender.com/)
