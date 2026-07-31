@@ -18,7 +18,7 @@ const privateCors =
   cors({
 
     origin: [
-      "http://localhost:5173"
+      "https://assisto-ai-frontend.onrender.com"
     ],
 
     credentials: true
