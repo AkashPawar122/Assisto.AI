@@ -124,7 +124,7 @@
 
     const loadAssistant = async () => {
         try {
-            const res = await fetch("http://localhost:8000/api/assistant/config/${userId}")
+            const res = await fetch(`http://localhost:8000/api/assistant/config/${userId}`)
 
             const data = await res.json()
 
@@ -199,7 +199,7 @@
 
     // text-speech
 
-    const speak = (text) => {
+    const speak = (text, onEnd) => {
         window.speechSynthesis.cancel();
 
         // Show AI response
@@ -228,6 +228,22 @@
 
             wave.style.opacity =
                 "0";
+
+            if (onEnd) onEnd();
+        };
+
+        // Fallback in case speech synthesis errors out silently
+        // (missing voice, no audio device, etc.) - without this,
+        // onEnd would never fire and navigation would never happen.
+        speech.onerror = () => {
+
+            status.innerText =
+                "Tap button to Speak";
+
+            wave.style.opacity =
+                "0";
+
+            if (onEnd) onEnd();
         };
 
         // Start speaking
@@ -292,7 +308,8 @@
                         },
                         body: JSON.stringify({
                             message: text,
-                            userId
+                            userId,
+                            currentPath: window.location.pathname
                         })
                     })
 
@@ -302,15 +319,12 @@
                     if (data.success) {
 
                         if (data.action === "navigate") {
-                            speak(data.response)
-
-                            setTimeout(() => {
+                            speak(data.response, () => {
                                 window.location.href = data.path
-
-                            }, 1500)
+                            })
 
                         } else {
-                            speak(data.aiResponse)
+                            speak(data.aiResponse || data.response)
                         }
 
                     } else {

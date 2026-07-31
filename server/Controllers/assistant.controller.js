@@ -42,7 +42,7 @@ export const askAssistant = async (req, res) => {
         }
 
         if (user.plan === "pro" && new Date(user.proExpiresAt) < new Date()) {
-            user.plan === "free"
+            user.plan = "free"
 
             await user.save()
 
@@ -69,26 +69,47 @@ export const askAssistant = async (req, res) => {
             const wantsNavigation =
                 navigationWords.some((word) =>
 
-                    cleanMessage.startsWith(word)
+                    cleanMessage.includes(word)
                 );
 
             // User wants navigation
             if (wantsNavigation) {
 
-                // Find matching page
-                const matchedPage =
-                    user.pages.find((page) =>
+                // Find matching page. Instead of returning the first page
+                // whose keyword/name happens to appear in the message
+                // (order-dependent, and a short generic keyword like "home"
+                // could shadow a more specific one like "dashboard"), pick
+                // the page whose matching keyword/name is the LONGEST /
+                // most specific match found anywhere in the message.
+                let matchedPage = null;
+                let bestMatchLength = 0;
 
-                        page.keywords.some((keyword) =>
+                for (const page of user.pages) {
 
-                            cleanMessage.includes(
-                                keyword.toLowerCase()
-                            )
-                        )
-                    );
+                    const candidates = [
+                        ...(page.keywords || []),
+                        page.name,
+                    ].filter(Boolean);
+
+                    for (const candidate of candidates) {
+
+                        const normalized = candidate.trim().toLowerCase();
+
+                        if (
+                            normalized &&
+                            cleanMessage.includes(normalized) &&
+                            normalized.length > bestMatchLength
+                        ) {
+                            bestMatchLength = normalized.length;
+                            matchedPage = page;
+                        }
+                    }
+                }
 
                 // Page found
                 if (matchedPage) {
+
+                    const displayName = matchedPage.name || "This page";
 
                     // Already open
                     if (
@@ -101,7 +122,7 @@ export const askAssistant = async (req, res) => {
                             success: true,
 
                             response:
-                                `${matchedPage.name} already open`
+                                `${displayName} is already open`
 
                         });
                     }
@@ -116,10 +137,24 @@ export const askAssistant = async (req, res) => {
                         path: matchedPage.path,
 
                         response:
-                            `Opening ${matchedPage.name}`,
+                            `Opening ${displayName}`,
 
                     });
                 }
+
+                // Navigation intent detected but no page matched -
+                // tell the user instead of silently falling through
+                // to the general AI prompt (which knows nothing about
+                // page routing and will just chat back, making it look
+                // like navigation is broken).
+                return res.json({
+
+                    success: true,
+
+                    response:
+                        "I couldn't find that page.",
+
+                });
             }
         }
 
@@ -181,5 +216,3 @@ ${message}
 
     }
 }
-
-

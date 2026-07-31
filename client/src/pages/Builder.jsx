@@ -358,7 +358,7 @@ function Builder({user , setUser}) {
               onChange={(e)=>setPageName(e.target.value)}
               value={[pageName]}/>
 
-              <input type="text" placeholder='/pricing' className='border border-gray-200 rounded-2xl px-4 py-3'
+              <input type="text" placeholder='/path (page name)' className='border border-gray-200 rounded-2xl px-4 py-3'
               onChange={(e)=>setPagePath(e.target.value)}
               value={[pagePath]}/>
 
