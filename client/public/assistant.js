@@ -18,7 +18,7 @@
 
     link.rel = "stylesheet"
 
-    link.href = "http://localhost:5173/assistant.css"
+    link.href = "http://https://assisto-ai-frontend.onrender.com/assistant.css"
 
     document.head.appendChild(link)
 
@@ -83,7 +83,7 @@
             <button class="assisto-mic">
 
                <img 
-               src="http://localhost:5173/mic.svg"
+               src="http://https://assisto-ai-frontend.onrender.com/mic.svg"
                alt="mic"
                class="assisto-mic-icon"/>
             </button>
@@ -102,7 +102,7 @@
 
     button.innerHTML = `
     <img 
-    src="http://localhost:5173/logo.svg"
+    src="http://https://assisto-ai-frontend.onrender.com/logo.svg"
     alt="logo"
     />`;
     document.body.appendChild(button)
@@ -124,7 +124,7 @@
 
     const loadAssistant = async () => {
         try {
-            const res = await fetch(`http://localhost:8000/api/assistant/config/${userId}`)
+            const res = await fetch(`http://https://assisto-ai-backend.onrender.com/api/assistant/config/${userId}`)
 
             const data = await res.json()
 
@@ -300,7 +300,7 @@
                     status.innerText = "Thinking...";
 
 
-                    const res = await fetch("http://localhost:8000/api/assistant/ask", {
+                    const res = await fetch("http://https://assisto-ai-backend.onrender.com/api/assistant/ask", {
                         method: "POST",
                         headers: {
                             "Content-Type":
